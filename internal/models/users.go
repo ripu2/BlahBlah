@@ -11,7 +11,7 @@ import (
 )
 
 type User struct {
-	ID          int       `json:"id" gorm:"primaryKey"`
+	ID          int64     `json:"id" gorm:"primaryKey"`
 	UserName    string    `json:"user_name" gorm:"unique;not null"`
 	FirstName   string    `json:"first_name"`
 	LastName    string    `json:"last_name"`
@@ -94,7 +94,6 @@ func (loginRequest *LoginRequest) LoginUser() (string, error) {
 	if err != nil {
 		return "", err
 	}
-
 	if !utils.CheckPasswordHash(loginRequest.Password, retrievedUser.Password) {
 		return "", errors.New("invalid Credentials")
 	}

@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "1d592017-acb6-4fb0-bb26-3b613cdc83dc",
+		"name": "Blah Blah",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13844657"
+	},
+	"item": [
+		{
+			"name": "Sign UP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Store token in eventsy environment\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    ",
+							"    console.log(\"🔍 Full Login Response:\", jsonData); // Debugging",
+							"    ",
+							"    if (jsonData.token) {",
+							"        pm.environment.set(\"AUTH_TOKEN\", jsonData.token); // Store token in eventsy",
+							"        console.log(\"✅ Token saved in eventsy:\", jsonData.token);",
+							"    } else {",
+							"        console.log(\"❌ Token not found in response!\");",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"user_name\": \"SunnyWetsShah\",\n  \"first_name\": \"Sunny Leone\",\n  \"last_name\": \"Shah\",\n  \"phone_number\": \"8969574227\",\n  \"password\": \"SecurePass123\",\n  \"dob\": \"1995-08-15T00:00:00Z\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/signUp",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"signUp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Store token in eventsy environment\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    ",
+							"    console.log(\"🔍 Full Login Response:\", jsonData); // Debugging",
+							"    ",
+							"    if (jsonData.token) {",
+							"        pm.environment.set(\"AUTH_TOKEN\", jsonData.token); // Store token in eventsy",
+							"        console.log(\"✅ Token saved in eventsy:\", jsonData.token);",
+							"    } else {",
+							"        console.log(\"❌ Token not found in response!\");",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"MiaLovesMudi\",\n    \"password\":\"SecurePass123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/login",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Channel",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let token = pm.cookies.get(\"auth_token\"); // Cookies se token uthao",
+							"console.log(\"Extracted Token:\", token); // Debug ke liye",
+							"",
+							"if (token) {",
+							"    pm.request.headers.add({ key: \"Authorization\", value: token});",
+							"} else {",
+							"    console.log(\"⚠️ Token not found in cookies!\");",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQiOiIyMDI1LTAzLTA5VDIyOjEyOjM3WiIsImV4cCI6MTc0MTU2NTU5NywiZmlyc3RfbmFtZSI6IlN1bm55IExlb25lIiwibGFzdF9uYW1lIjoiU2hhaCIsInVzZXJJZCI6MywidXNlcm5hbWUiOiJTdW5ueVdldHNTaGFoIn0.NFBun2YbHQ1EvePVAak2BtbzeCTrEhwx-z6QqzxcLDQ",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Sunny ki Kahani\",\n  \"is_private\": true,\n  \"metadata\": {\n    \"description\": \"A channel for tech enthusiasts\",\n    \"rules\": \"Be respectful, No spamming\"\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/createChanel",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"createChanel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Channels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/channels",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"channels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Owned Channels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/myChannels",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"myChannels"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"if (pm.environment.get(\"AUTH_TOKEN\")) {",
+					"    pm.request.headers.add({",
+					"        key: \"Authorization\",",
+					"        value: \"Bearer \" + pm.environment.get(\"AUTH_TOKEN\")",
+					"    });",
+					"}",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Host",
+			"value": "localhost:8080/api/v1",
+			"type": "string"
+		}
+	]
+}

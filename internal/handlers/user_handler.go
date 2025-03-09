@@ -49,6 +49,6 @@ func LoginUserHandler(ctx *gin.Context) {
 		utils.ErrorHandler(ctx, err, "Failed to login", http.StatusUnauthorized)
 		return
 	}
-	ctx.SetCookie("auth_token", token, 3600*24, "/", "", false, true)
+	ctx.SetCookie("auth_token", token, 3600*24, "/", "", false, false)
 	utils.HandleResponse(ctx, utils.GenerateMapForResponseType("data", "Login successful", map[string]string{"token": token}), http.StatusOK)
 }

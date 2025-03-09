@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -13,9 +12,8 @@ import (
 // Middleware to check authentication
 func CheckForAuthentication(ctx *gin.Context) {
 	// Get token from header
-	token := ctx.Request.Header.Get("Authorization")
-	token2, _ := ctx.Cookie("auth_token")
-	fmt.Printf("Token 1==========> %s\n Token2============>%s", token, token2)
+	// token := ctx.Request.Header.Get("Authorization")
+	token, _ := ctx.Cookie("auth_token")
 	if token == "" {
 		utils.ErrorHandler(ctx, errors.New("Unauthenticated"), "Unauthenticated", http.StatusUnauthorized)
 		ctx.Abort() // 🔥 Ensure request is stopped
@@ -24,7 +22,6 @@ func CheckForAuthentication(ctx *gin.Context) {
 
 	// Remove "Bearer " prefix if present
 	token = strings.TrimPrefix(token, "Bearer ")
-	fmt.Printf("Token 2==========> %s", token)
 	// Verify token
 	id, err := utils.VerifyToken(token)
 	if err != nil {
