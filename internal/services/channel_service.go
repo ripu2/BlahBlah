@@ -14,7 +14,7 @@ func CreateChanelService(channel *models.Channel) error {
 	return nil
 }
 
-func GetAllChannels() ([]models.Channel, error) {
+func GetAllChannelsService() ([]models.Channel, error) {
 	channels, err := models.GetAllChannels()
 	if err != nil {
 		return nil, errors.New(err.Error())
@@ -23,11 +23,15 @@ func GetAllChannels() ([]models.Channel, error) {
 	return channels, nil
 }
 
-func GetChannelById(id int64) ([]models.Channel, error) {
+func GetChannelByIdService(id int64) ([]models.Channel, error) {
 	channels, err := models.GetChannelByOwnerId(id)
 	if err != nil {
 		return nil, errors.New(err.Error())
 	}
 
 	return channels, nil
+}
+
+func InsertUserInChannelService(user *models.ChannelUser) error {
+	return user.AddToChanel()
 }

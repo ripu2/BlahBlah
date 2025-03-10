@@ -17,4 +17,5 @@ func SetupRoutes(server *gin.Engine) {
 
 	authServer.POST("/api/v1/createChanel", handlers.CreateChanelHandler)
 	authServer.GET("/api/v1/myChannels", handlers.GetOwnChannelsHandler)
+	authServer.POST("/api/v1/addUserToChannel/:id", handlers.AddUserToCHannelsHandler)
 }

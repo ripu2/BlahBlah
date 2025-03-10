@@ -27,7 +27,7 @@ const (
 
 	CreateChannelUserTableQuery = `CREATE TABLE IF NOT EXISTS channel_users (
     channel_id INT NOT NULL,
-    user_id INT NOT NULL,
+    user_id INT NOT NULL UNIQUE,
     role TEXT CHECK (role IN ('admin', 'member', 'moderator')), -- Role validation
     joined_at TIMESTAMP DEFAULT now(),
 

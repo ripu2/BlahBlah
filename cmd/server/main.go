@@ -7,11 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/ripu2/blahblah/internal/config/db"
+	RedisClient "github.com/ripu2/blahblah/internal/config/redis"
 	"github.com/ripu2/blahblah/internal/routes"
 )
 
 func main() {
 	db.InitDB()
+	RedisClient.InitRedisClient()
 	_ = godotenv.Load()
 	server := gin.Default()
 	routes.SetupRoutes(server)

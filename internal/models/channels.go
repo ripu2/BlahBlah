@@ -3,6 +3,8 @@ package models
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
+	"strings"
 	"time"
 
 	"github.com/ripu2/blahblah/internal/config/db"
@@ -27,6 +29,20 @@ type ChannelUser struct {
 // JSONB type to handle JSON data
 type JSONB map[string]interface{}
 
+func (chanelUser *ChannelUser) AddToChanel() error {
+	query := `INSERT INTO channel_users (channel_id, user_id, role) VALUES ($1, $2, $3)`
+	_, err := db.DB.Exec(query, chanelUser.ChannelID, chanelUser.UserID, chanelUser.Role)
+	if err != nil {
+		if strings.Contains(err.Error(), "duplicate key value violates unique constraint \"channel_users_user_id_key\"") {
+			return errors.New("user already in a channel")
+		}
+		return fmt.Errorf("error inserting data: %s", err.Error())
+	}
+
+	fmt.Println("User inserted successfully!")
+	return nil
+}
+
 func (chanel *Channel) CreateChanel() error {
 	var exists *bool
 	if db.DB == nil {
@@ -49,6 +65,13 @@ func (chanel *Channel) CreateChanel() error {
 	if err != nil {
 		return errors.New(err.Error())
 	}
+
+	user := &ChannelUser{ // Struct initialized properly
+		ChannelID: chanel.ID,
+		UserID:    chanel.CreatedBy,
+		Role:      "admin",
+	}
+	user.AddToChanel()
 	return nil
 
 }

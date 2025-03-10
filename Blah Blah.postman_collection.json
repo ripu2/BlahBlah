@@ -148,7 +148,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Sunny ki Kahani\",\n  \"is_private\": true,\n  \"metadata\": {\n    \"description\": \"A channel for tech enthusiasts\",\n    \"rules\": \"Be respectful, No spamming\"\n  }\n}\n",
+					"raw": "{\n  \"name\": \"The Randwas\",\n  \"is_private\": true,\n  \"metadata\": {\n    \"description\": \"A channel for tech enthusiasts\",\n    \"rules\": \"Be respectful, No spamming\"\n  }\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -196,6 +196,24 @@
 					],
 					"path": [
 						"myChannels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add use to chanel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/addUserToChannel/21",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"addUserToChannel",
+						"21"
 					]
 				}
 			},
