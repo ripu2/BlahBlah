@@ -14,8 +14,8 @@ func CreateChanelService(channel *models.Channel) error {
 	return nil
 }
 
-func GetAllChannelsService() ([]models.Channel, error) {
-	channels, err := models.GetAllChannels()
+func GetAllChannelsService(id int64) ([]models.Channel, error) {
+	channels, err := models.GetAllChannels(id)
 	if err != nil {
 		return nil, errors.New(err.Error())
 	}

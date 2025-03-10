@@ -76,9 +76,12 @@ func (chanel *Channel) CreateChanel() error {
 
 }
 
-func GetAllChannels() ([]Channel, error) {
-	query := `SELECT * FROM communication_channel`
-	rows, err := db.DB.Query(query)
+func GetAllChannels(ownerId int64) ([]Channel, error) {
+	query := `
+	SELECT * FROM communication_channel
+	WHERE is_private = false OR created_by = $1
+`
+	rows, err := db.DB.Query(query, ownerId)
 	if err != nil {
 		return nil, errors.New(err.Error())
 	}

@@ -37,7 +37,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"user_name\": \"SunnyWetsShah\",\n  \"first_name\": \"Sunny Leone\",\n  \"last_name\": \"Shah\",\n  \"phone_number\": \"8969574227\",\n  \"password\": \"SecurePass123\",\n  \"dob\": \"1995-08-15T00:00:00Z\"\n}\n",
+					"raw": "{\n  \"user_name\": \"4742ripu\",\n  \"first_name\": \"Ripu\",\n  \"last_name\": \"Daman\",\n  \"phone_number\": \"8969574227e\",\n  \"password\": \"SecurePass123\",\n  \"dob\": \"1995-08-15T00:00:00Z\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -90,7 +90,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userName\": \"MiaLovesMudi\",\n    \"password\":\"SecurePass123\"\n}",
+					"raw": "{\n    \"userName\": \"4742ripu\",\n    \"password\":\"SecurePass123\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -148,7 +148,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"The Randwas\",\n  \"is_private\": true,\n  \"metadata\": {\n    \"description\": \"A channel for tech enthusiasts\",\n    \"rules\": \"Be respectful, No spamming\"\n  }\n}\n",
+					"raw": "{\n  \"name\": \"The Movie Night 2\",\n  \"is_private\": false,\n  \"metadata\": {\n    \"description\": \"A channel for tech enthusiasts\",\n    \"rules\": \"Be respectful, No spamming\"\n  }\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"

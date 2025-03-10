@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	config "github.com/ripu2/blahblah/internal/config/redis"
 	"github.com/ripu2/blahblah/internal/models"
 	"github.com/ripu2/blahblah/internal/services"
 	"github.com/ripu2/blahblah/internal/utils"
@@ -49,6 +50,7 @@ func LoginUserHandler(ctx *gin.Context) {
 		utils.ErrorHandler(ctx, err, "Failed to login", http.StatusUnauthorized)
 		return
 	}
+	services.DeleteValueFromCache(config.CHANNEL_KEY)
 	ctx.SetCookie("auth_token", token, 3600*24, "/", "", false, false)
 	utils.HandleResponse(ctx, utils.GenerateMapForResponseType("data", "Login successful", map[string]string{"token": token}), http.StatusOK)
 }
